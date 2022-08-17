@@ -4,10 +4,12 @@ module Api
 
             def index
                 @master_brands = MasterBrand.all
-                render status: 200, json: {
-                    message: "Success",
-                    data: @master_brands
-                }
+
+                render json: @master_brands, each_serializer: MasterBrandSerializer
+                # render status: 200, json: {
+                #     message: "Success",
+                #     data: @master_brands, each_serializer: MasterBrandSerializer
+                # }
             end
         
             def create
@@ -27,10 +29,11 @@ module Api
 
             def show
                 @master_brand = MasterBrand.find(params[:id])
-                render status: 200, json: {
-                    message: "Success",
-                    data: @master_brand
-                }
+                render json: @master_brand, serializer: MasterBrandSerializer
+                # render status: 200, json: {
+                #     message: "Success",
+                #     data: @master_brand, serializer: MasterBrandSerializer
+                # }
             end
 
             def update
@@ -57,7 +60,7 @@ module Api
                         data: @master_brand
                     }
                 else
-                    render status: unprocessable_entity, json: {
+                    render status: 404, json: {
                         message: "Failed",
                         errors: @master_brand.errors
                     }

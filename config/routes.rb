@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :master_brands
+      
+      resources :master_products
+      resources :master_locations
+      resources :master_units
     end
   end
-  resources :master_brands
 end
